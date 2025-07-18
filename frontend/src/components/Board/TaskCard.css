@@ -1,0 +1,97 @@
+/* .task-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  cursor: grab;
+}
+
+.task-card:hover {
+  transform: scale(1.02);
+}
+
+.task-avatar {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.avatar-circle {
+  background: #3498db;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+} */
+
+
+
+.task-card {
+  background-color: #ffffff;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* ==== Title and Description ==== */
+.task-card h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+.task-card p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* ==== Assignee Avatar ==== */
+.task-avatar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.avatar-circle {
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  color: white;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==== Due Date ==== */
+.task-card small {
+  font-size: 13px;
+  color: #888;
+}
+

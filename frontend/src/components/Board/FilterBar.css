@@ -1,0 +1,44 @@
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Common style for all inputs and selects */
+.filter-bar input,
+.filter-bar select {
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  min-width: 160px;
+  background-color: #fff;
+  transition: border 0.3s ease, box-shadow 0.2s ease;
+}
+
+.filter-bar input:focus,
+.filter-bar select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 6px rgba(52, 152, 219, 0.2);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-bar input,
+  .filter-bar select {
+    width: 100%;
+  }
+}
