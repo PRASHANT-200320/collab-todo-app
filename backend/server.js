@@ -15,6 +15,11 @@ const app = express();
 const server = http.createServer(app);
 const io = init(server);
 
+
+io.on("connection", (socket) => {
+  console.log("Socket connected:", socket.id);
+});
+
 app.set("io", io);
 
 app.use(cors());

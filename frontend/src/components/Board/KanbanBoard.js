@@ -6,8 +6,7 @@ import ActivityLog from "./ActivityLog";
 import Filters from "./Filters";
 import { useAuth } from "../../context/AuthContext";
 import "./KanbanBoard.css";
-
-
+import socket from "../../socket";
 
 const KanbanBoard = () => {
   const [tasks, setTasks] = useState([]);
@@ -19,8 +18,14 @@ const KanbanBoard = () => {
 
   useEffect(() => {
     fetchData();
-    const socket = new WebSocket("ws://localhost:5000"); 
-    return () => socket.close();
+
+    socket.on("task-updated", fetchData);
+    socket.on("new-log", fetchData);
+
+    return () => {
+      socket.off("task-updated", fetchData);
+      socket.off("new-log", fetchData);
+    };
   }, []);
 
   const fetchData = async () => {
@@ -54,7 +59,7 @@ const KanbanBoard = () => {
     const id = e.dataTransfer.getData("text");
     try {
       await API.put(`/tasks/${id}`, { status });
-      fetchData(); // refresh after drop
+      fetchData();
     } catch (err) {
       console.error("Failed to update task status");
     }
@@ -64,12 +69,10 @@ const KanbanBoard = () => {
 
   return (
     <div className="kanban-container">
-      {/* Left: Form */}
       <div className="create-task-form">
         <CreateTaskForm refresh={fetchData} users={users} />
       </div>
 
-      {/* Middle: Task Board */}
       <div className="board-content">
         <Filters filters={filters} setFilters={setFilters} />
         <div className="board-columns" style={{ display: "flex", gap: "12px" }}>
@@ -89,7 +92,6 @@ const KanbanBoard = () => {
         </div>
       </div>
 
-      {/* Right: Activity Log */}
       <div className="activity-log">
         <ActivityLog logs={logs} />
       </div>

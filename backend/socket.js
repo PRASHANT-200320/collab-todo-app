@@ -1,10 +1,14 @@
+
 import { Server } from "socket.io";
 
-let io;
+export let io;
 
-export const init = (httpServer) => {
-  io = new Server(httpServer, {
-    cors: { origin: "*" },
+export const init = (server) => {
+  io = new Server(server, {
+    cors: {
+      origin: process.env.FRONTEND_URL, 
+      methods: ["GET", "POST"],
+    },
   });
   return io;
 };
