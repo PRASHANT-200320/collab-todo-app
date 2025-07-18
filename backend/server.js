@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-dotenv.config(); // ✅ Load .env
+dotenv.config(); 
 
 import http from "http";
 import express from "express";
@@ -8,24 +8,22 @@ import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
-import logRoutes from "./routes/logRoutes.js"; //  optional but important
-import { init, getIO } from "./socket.js"; //  socket logic
+import logRoutes from "./routes/logRoutes.js";
+import { init, getIO } from "./socket.js";
 
 const app = express();
 const server = http.createServer(app);
-const io = init(server); //  initialize socket.io
+const io = init(server);
 
 app.set("io", io);
 
 app.use(cors());
 app.use(express.json());
 
-//  routes
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/logs", logRoutes);
 
-//  socket connection log
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
@@ -34,9 +32,8 @@ io.on("connection", (socket) => {
   });
 });
 
-//  connect to MongoDB
 mongoose
-  .connect(MONGO_URI, {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
