@@ -46,7 +46,8 @@ const CreateTaskForm = ({ refresh  }) => {
       setDueDate("");
 
       setAssignedTo("");
-      refresh();
+    if (typeof refresh === "function") refresh();
+
     } catch (err) {
       alert("Failed to create task: " + (err.response?.data?.error || err.message));
     } finally {
