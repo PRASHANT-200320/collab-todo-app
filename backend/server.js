@@ -24,6 +24,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/logs", logRoutes);
 
+
+router.get("/test", (req, res) => {
+  res.send("Server running");
+});
+
+
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
