@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import API from "../../api";
 import "./indexs.css"; 
 
-const CreateTaskForm = ({ onTaskCreated }) => {
+const CreateTaskForm = ({ refresh  }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("Low");
@@ -46,7 +46,7 @@ const CreateTaskForm = ({ onTaskCreated }) => {
       setDueDate("");
 
       setAssignedTo("");
-      onTaskCreated();
+      refresh();
     } catch (err) {
       alert("Failed to create task: " + (err.response?.data?.error || err.message));
     } finally {
