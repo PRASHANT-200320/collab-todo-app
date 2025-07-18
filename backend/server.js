@@ -36,7 +36,7 @@ io.on("connection", (socket) => {
 
 //  connect to MongoDB
 mongoose
-  .connect("mongodb://localhost:27017/collabtodo", {
+  .connect(MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
