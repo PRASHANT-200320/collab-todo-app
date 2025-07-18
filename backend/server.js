@@ -25,9 +25,6 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/logs", logRoutes);
 
 
-router.get("/test", (req, res) => {
-  res.send("Server running");
-});
 
 
 
