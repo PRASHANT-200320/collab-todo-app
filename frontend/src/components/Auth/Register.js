@@ -12,19 +12,28 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate(); 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await API.post("/auth/register", { fullName, email, password });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await API.post("/auth/register", { fullName, email, password });
-      localStorage.setItem("token", res.data.token); 
-      login(res.data); 
-      navigate("/board");
-    } catch (err) {
-      alert("Registration failed");
-      console.error(err.response?.data || err.message);
+    const token = res.data.token;
+    const user = res.data.user;
+
+    if (!token || !user) {
+      alert("Invalid server response");
+      return;
     }
-  };
+
+    localStorage.setItem("token", token); 
+    login(user, token); 
+    navigate("/board");
+  } catch (err) {
+    alert("Registration failed");
+    console.error(err.response?.data || err.message);
+  }
+};
+
 
   return (
     <div className="auth-container">

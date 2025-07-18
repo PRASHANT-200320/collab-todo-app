@@ -101,7 +101,7 @@ export const smartAssign = async (req, res) => {
   io.emit("task-updated", task);
   io.emit("new-log", log);
 
-  if (minUser.email) {
+   if (minUser.email) {
     await sendEmail(
       minUser.email,
       "New Task Assigned",
